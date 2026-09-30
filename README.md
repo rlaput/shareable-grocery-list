@@ -18,8 +18,10 @@ The payload is a compact array of `[text, done]` pairs. Text is converted to UTF
 
 ## Deploy to GitHub Pages
 
-1. Push to GitHub.
-2. **Settings → Pages → Build and deployment → Deploy from a branch**, pick your branch and `/ (root)`.
+Deployment is automated by `.github/workflows/pages.yml`, which publishes the site on every push to `main`.
+
+1. One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Push to `main`, or run the workflow manually from the **Actions** tab ("Deploy to GitHub Pages" → Run workflow).
 3. Open `https://<user>.github.io/shareable-grocery-list/`.
 
 ## Run locally

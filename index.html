@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="A simple shared grocery list that works offline.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Grocery List</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <form id="add-form" class="add-form" autocomplete="off">
+      <label for="item-input" class="sr-only">Add an item</label>
+      <input id="item-input" type="text" inputmode="text" enterkeyhint="done"
+             placeholder="Add an item…" maxlength="120" autocapitalize="sentences">
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </header>
+
+  <main>
+    <p id="summary" class="summary" aria-live="polite"></p>
+    <ul id="list" class="list"></ul>
+    <div id="empty" class="empty" hidden>
+      <p class="empty-title">Your list is empty</p>
+      <p class="empty-sub">Type an item above and tap Add.</p>
+    </div>
+    <button id="clear-done" type="button" class="link-btn" hidden>Remove crossed-off items</button>
+  </main>
+
+  <footer class="bottom">
+    <button id="share-btn" type="button" class="btn btn-share">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+      Share List
+    </button>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <div id="import-dialog" class="overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="import-title">
+      <h2 id="import-title">Shared list received</h2>
+      <p id="import-desc">Merge this shared list with your current list or replace it?</p>
+      <div class="sheet-actions">
+        <button type="button" class="btn btn-primary" data-choice="merge">Merge</button>
+        <button type="button" class="btn btn-secondary" data-choice="replace">Replace</button>
+        <button type="button" class="btn btn-ghost" data-choice="cancel">Ignore</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
